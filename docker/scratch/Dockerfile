@@ -4,8 +4,8 @@
 #
 # Builder
 #
-FROM golang:1.8 AS builder
-LABEL maintainer "Seth Vargo <seth@sethvargo.com> (@sethvargo)"
+FROM golang:1.20 AS builder
+LABEL maintainer "Mark CV <mark.cv@hashicorp.com> (@markcampv)"
 
 ARG LD_FLAGS
 ARG GOTAGS
@@ -22,7 +22,7 @@ RUN \
 # Final
 #
 FROM scratch
-LABEL maintainer "Seth Vargo <seth@sethvargo.com> (@sethvargo)"
+LABEL maintainer "Mark CV <mark.cv@hashicorp.com> (@markcampv)"
 
 ADD "https://curl.haxx.se/ca/cacert.pem" "/etc/ssl/certs/ca-certificates.crt"
 COPY --from=builder "/consul-replicate" "/bin/consul-replicate"
